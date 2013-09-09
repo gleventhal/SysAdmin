@@ -76,9 +76,9 @@ done
 read NUM
 if [ "$NUM" = "q" ]; then exit 1; fi
   echo restoring ${CURR_SNAPS[$NUM]}
-  echo ${CURR_SNAPS[$NUM]} |grep CE7 && VM=vm1 && IMGPATH=$PATH_VM1 2>/dev/null
-  echo ${CURR_SNAPS[$NUM]} |grep ce7_2 && VM=vm2 && IMGPATH=$PATH_VM2 2>/dev/null
-  echo ${CURR_SNAPS[$NUM]} |grep logos && VM=vm3 && IMGPATH=$PATH_VM3 2>/dev/null
+  echo ${CURR_SNAPS[$NUM]} |grep vm1 && VM=vm1 && IMGPATH=$PATH_VM1 2>/dev/null
+  echo ${CURR_SNAPS[$NUM]} |grep vm2 && VM=vm2 && IMGPATH=$PATH_VM2 2>/dev/null
+  echo ${CURR_SNAPS[$NUM]} |grep vm3 && VM=vm3 && IMGPATH=$PATH_VM3 2>/dev/null
   virsh list |grep $VM 2>/dev/null && virsh shutdown $VM
   echo $VM should be shut down now...
   #If Shutdown command fails, forcefully halt machine..
