@@ -7,6 +7,8 @@
 # Creates a simple management interface for the Linux Logical Volume Manager (LVM)
 # For the purpose of managing and creating Logical Volume Snapshots of KVM Virtual Disk formats living on a LVM2 logical Volume
 # This assumes 3 KVM domains named vm1, vm2, and vm3, each living on an LVM logical volume under /opt/virt/img/<vmname>, all within the volume group vg1
+# If you are restoring a snapshot, shutdown the VM/domain first or you will have problems!
+# Example Usage: snapman.sh list
 
 
 DATE=$(date +%H-%M-%m-%d-%y)
