@@ -7,4 +7,4 @@ $val = $i * $_; print $val; if($val < 10){$sep = "----"}elsif($val >=10 && $val 
 print $sep unless $_ >= 12;
 }
 print "\n";
-}'
+}
