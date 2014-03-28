@@ -9,7 +9,7 @@ $word = lc $word;
 if ( $word =~ qr/^[aeiou]/) {
     print "$word", "ay ";
     }else{
-    $word =~ s/(.)(.*)/$2$1/;
+    $word =~ s/([a-z])([a-z]+)/$2$1/;
     print "$word", "ay ";
     }
 }
