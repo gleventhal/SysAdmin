@@ -13,7 +13,7 @@ if( $> != 0 ) {
 	die "\n$0 must be run as root or using sudo!\n\n";
 }
 # Make sure it is an IP with either 157. or 140. as first octet
-unless ( $IP =~ qr/(140|157)\.(\d{1,3}\.){2}\d{1,3}/ ) {	
+unless ( $IP =~ qr/^(140|157)\.(\d{1,3}\.){2}\d{1,3}$/ ) {	
 	die "Usage: $0 IP Address\n";
 } else {		
 	open FH2, ">", $TEMPFILE;
