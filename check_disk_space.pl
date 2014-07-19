@@ -7,7 +7,7 @@ use Mail::Sendmail;
 my $svr = `hostname`;
 my @output = `df -h`;
 my $msg;
-my $mailto = 'grl2007@med.cornell.edu';
+my $mailto = 'someone@foo.com';
 my $threshold = 90;
 
 sub main
@@ -18,7 +18,7 @@ sub main
     }
 
     my %mail = ( To      => $mailto,
-                 From    => 'York-Monitor@med.cornell.edu',
+                 From    => 'Server@foo.com',
                  Subject => "$svr has a full file system",
                  Message => $msg
                );
