@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# A Medicore Password Generator
+# A Mediocre Password Generator
 
 import random, string
 
