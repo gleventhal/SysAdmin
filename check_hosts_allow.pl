@@ -35,7 +35,6 @@ sub main
     }
   } 
 }
-}
 
 sub make_changes
 {
@@ -60,3 +59,4 @@ else
 {		
 main
 make_changes
+}
