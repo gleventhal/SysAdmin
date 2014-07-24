@@ -31,26 +31,27 @@ unless ( $IP =~ qr/^(140|157)\.(\d{1,3}\.){2}\d{1,3}$/ ) {
 else 
 {		
 
-  open FH2, ">", $TEMPFILE;
-  open (FH, "<", "$FILE");    	
+    open FH2, ">", $TEMPFILE;
+    open (FH, "<", "$FILE");    	
     
-  foreach $LINE (<FH>) {      	
-  if ( $LINE =~ qr/^sshd: (.*)/i ) {          	
+    foreach $LINE (<FH>) {      	
+    if ( $LINE =~ qr/^sshd: (.*)/i ) {          	
+    
     @LIST = split(", ", $1);
 
     foreach (@LIST) {               	
-    chomp $_;
-    $_ =~ s/\s//g;               		 
+    	chomp $_;
+    	$_ =~ s/\s//g;               		 
 
     if(  ($IP eq $_) || ($IP =~ /^\Q$_/) ) {
-      print "IP ADDRESS: $IP found! \n";                     
-      exit 0;
+    	print "IP ADDRESS: $IP found! \n";                     
+    	exit 0;
     }else{                 		
-      $NEWLIST .= "$_, ";
+    	$NEWLIST .= "$_, ";
     }
     }print FH2 "sshd: $NEWLIST$IP\n";
-  }else{ 
-      print FH2 "$LINE";
+    }else{ 
+    	print FH2 "$LINE";
     }
   } 
 }
