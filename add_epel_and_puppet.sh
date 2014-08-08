@@ -10,7 +10,7 @@ elif [[  $(lsb_release -d) =~ 'Red Hat Enterprise Linux Server release 6' ]]; th
         rpm -Uvh epel-release-6*.rpm
 else
         echo "This is not RHEL 5 or 6; Exiting.."
-        exit1
+        exit 1
 fi
 
 yum -y install puppet
