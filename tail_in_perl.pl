@@ -1,9 +1,9 @@
 #!/usr/bin/perl
-# A totally inefficent version of Tail in Perl.. Soon to come, and efficient version
+# A totally inefficent version of Tail in Perl.. Soon to come, an efficient version
 use strict;
 use warnings;
 
-our $FILE = $ARGV[0] || die "Usage $0 File Name\n";
+our $FILE = $ARGV[0] || die "Usage $0 FileName\n";
 our $COUNT = 0;
 open(FH, $FILE) or die "Cannot open File: $FILE\n";
 
