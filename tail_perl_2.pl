@@ -11,5 +11,5 @@ open(FH, $FILE);
 $LENGTH = @LINES;
 
 foreach (($LENGTH - 10 )..$LENGTH) {
-  print $LINES[$_], "\n";
+  print $LINES[$_];
 }
