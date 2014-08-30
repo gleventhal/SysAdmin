@@ -9,10 +9,10 @@ SHUTDOWNCMD=/oac/confluence/atlassian-confluence-4.3.1/bin/shutdown.sh
 STARTUPCMD=/oac/confluence/atlassian-confluence-4.3.1/bin/startup.sh
 
 on_error() {
-logger $0 failed to $1
+logger $0 failed 
 }
 
-trap "on_error $1" ERR
+trap "on_error" ERR
 
 usage() {
 cat << EOF
