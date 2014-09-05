@@ -13,4 +13,13 @@ else
         exit 1
 fi
 
-yum -y install puppet
+function config_puppet()
+{
+  yum -y install puppet
+  chkconfig puppet on
+  sed -i '12 \a    server = $1' /etc/puppet/puppet.conf
+  puppet agent --test --waitforcert 5
+  service puppet start
+}
+
+config_puppet
