@@ -1,5 +1,10 @@
 #!/bin/bash
 
+[[ -z "$1" ]] && puppetmaster='default_puppetmaster' || puppetmaster="$1"
+epel=$(yum repolist|egrep -q '^epel')$?
+mailto=puppet_admin@foo.bar
+function install_epel()
+{
 echo "Installing EPEL Repo and Puppet client"
 
 if [[ $(lsb_release -d) =~ 'Red Hat Enterprise Linux Server release 5' ]]; then
@@ -12,14 +17,20 @@ else
         echo "This is not RHEL 5 or 6; Exiting.."
         exit 1
 fi
+}
 
 function config_puppet()
 {
   yum -y install puppet
   chkconfig puppet on
-  sed -i "12 a\    server = $1" /etc/puppet/puppet.conf
+  sed -i "12 a\    server = $puppetmaster" /etc/puppet/puppet.conf
+  echo signme|mail -s "$(hostname) is waiting to be signed on puppet master" $mailto
   puppet agent --test --waitforcert 5
   service puppet start
 }
+
+if ! [[ epel -eq 0 ]]; then
+  install_epel
+fi
 
 config_puppet
