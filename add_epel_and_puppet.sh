@@ -29,7 +29,7 @@ function config_puppet()
   service puppet start
 }
 
-if ! [[ epel -eq 0 ]]; then
+if ! [[ $epel -eq 0 ]]; then
   install_epel
 fi
 
