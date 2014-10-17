@@ -24,13 +24,13 @@ class nginx {
     group  => 'root',
     mode   => '0755',
   }
-  
+
   exec { "$wget_epel":
     path   => $basic_path,
     unless => "test $(rpm -q ${epel} &>/dev/null)$? -eq 0",
     cwd    => $dl_dir
   }
-  
+
   exec { "$epel_install":
     path   => $basic_path,
     unless => "test $(rpm -q ${epel} &>/dev/null)$? -eq 0",
@@ -41,16 +41,35 @@ class nginx {
     ensure => installed
   }
 
+  package { 'git':
+    ensure => installed,
+    before => Exec["$pull_index_command"]
+  }
+
   exec { "$pull_index_command":
     path    => $basic_path,
     creates => "${document_root}/exercise-webpage",
     cwd     => $document_root,
   }
 
-  service { 'nginx':
-    ensure => 'running'
+  exec { 'sed -i "s|\(/usr/share/nginx/html/\?\)\(;\)|\1/exercise-webpage\2|" /etc/nginx/conf.d/default.conf':
+    path    => $basic_path,
+    unless  => "grep -q 'exercise-webpage'  /etc/nginx/conf.d/default.conf",
+    require => [
+      Package['nginx']
+    ]
   }
-  
+
+  file { '/etc/nginx/conf.d/default.conf':
+    ensure  => present,
+    require => Package['nginx']
+  }
+
+  service { 'nginx':
+    ensure    => 'running',
+    subscribe => File['/etc/nginx/conf.d/default.conf']
+  }
+
 File["$dl_dir"] -> Exec["$wget_epel"] -> Exec["$epel_install"] -> Package['nginx'] -> Exec["$pull_index_command"] -> Service['nginx']
 }
 
