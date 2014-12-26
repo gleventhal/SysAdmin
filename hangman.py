@@ -108,7 +108,12 @@ def drawScreen(x=None):
     if misses:
         print "Incorrect guesses: %s" % (' '.join(misses))
     if ''.join(results) == word:
-        print win[0]
+        dnull = open('/dev/null', 'w')
+        f = subprocess.call(["which", "figlet"],stdout=dnull)
+        if not f:
+            subprocess.call(["figlet", "you win!"])
+        else:
+            print win[0]
         time.sleep(2)
         exit()
     if x == 'loss':
@@ -139,6 +144,7 @@ def __main__():
             for i in indices:
                 results[i] = guess
         else:
+            print '\a'
             misses.append(guess)
 
 __main__()
