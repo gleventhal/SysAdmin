@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-import time, sys
-from subprocess import call
 
 dictionary = '/usr/share/dict/words'
 integers = []
