@@ -1,9 +1,11 @@
 #!/usr/bin/env python
-import time
+import time, sys
 from subprocess import call
 
+dictionary = '/usr/share/dict/words'
 integers = []
-numbers = raw_input("Please enter a phone number:")
+Matches = []
+integers = [int(num) for num in sorted(raw_input("Please enter a phone number:")) if num.isdigit() and not (num == '0' or num == '1') ]
 keypad = {
   0 : '',
   1 : '',
@@ -16,28 +18,16 @@ keypad = {
   8 : ['t', 'u', 'v'],
   9 : ['w', 'x', 'y', 'z']
   }
+print integers
+with open(dictionary, 'r') as d:
+  for word in d.readlines():
+    if len(integers) == len(word.rstrip()):
+      SortWord = sorted(word.rstrip())
+      match = []
+      for Index, Digit in enumerate(integers):
+        if SortWord[Index].lower() in keypad[Digit]:
+          match.append(SortWord[Index])
+          if (match == SortWord):
+            Matches.append(word)  
 
-
-for num in list(numbers):
-  if num.isdigit() and not ( num == '0' or num == '1'):
-    integers.append(int(num))
-
-del numbers
-
-integers = sorted(integers)
-
-def main():
-    print "using %s " % (integers)
-    with open('/usr/share/dict/words', 'r') as d:
-      for word in d.readlines():
-        SortWord = sorted(word.rstrip())
-        match = []
-        if len(integers) == len(SortWord):
-          for Index, Digit in enumerate(integers):
-            if SortWord[Index].lower() in keypad[Digit]:
-                match.append(SortWord[Index])
-                if match == SortWord:
-                  print "Match found!\t%s" % (word)
-            else:
-              break
-main()
+print "Matches found!:\n%s" % ("\n".join(Matches))
