@@ -4,8 +4,12 @@
 
 import sys, re
 
-left = sys.argv[1]
-right = sys.argv[2]
+if len(sys.argv) < 3:
+    print "Usage:\t%s <word one> <word two>" % (sys.argv[0])
+    sys.exit(1)
+else:
+    left = sys.argv[1]
+    right = sys.argv[2]
 
 def CompareWords(left, right):
     '''Test the two words, removing any duplicate letters'''
