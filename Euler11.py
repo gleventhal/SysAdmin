@@ -54,8 +54,4 @@ for i1,row in enumerate(glist):
     rd.append(rightDiagonal(x,y))
     s.append(straight(x,y))
     
-results = []
-results.append(max(ld))
-results.append(max(rd))
-results.append(max(s))
-print max(results)
+print max(max(ld), max(rd), max(s))
