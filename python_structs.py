@@ -1,4 +1,4 @@
-#!/usr/bin/evn python
+#!/usr/bin/env python
 
 class Stack(object):
     '''Creates a stack object'''
