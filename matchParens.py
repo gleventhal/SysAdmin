@@ -2,7 +2,7 @@
 # For Felix
 
 def matchParens(pstring):
-    '''Check string of parenthesis for sane groupuing and nesting'''
+    '''Check string of parenthesis for sane grouping and nesting'''
     plist = [l for l in pstring]
     newlist = []
     if plist[0] == ')' or plist.count('(') != plist.count(')') or plist[-1::] == '(':
