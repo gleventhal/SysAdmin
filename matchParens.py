@@ -3,7 +3,7 @@
 
 def matchParens(pstring):
     '''Check string of parenthesis for sane grouping and nesting'''
-    plist = [l for l in pstring]
+    plist = list(pstring)
     newlist = []
     if plist[0] == ')' or plist.count('(') != plist.count(')') or plist[-1::] == '(':
         return False
