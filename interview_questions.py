@@ -40,3 +40,19 @@ def sum_to_zero(a):
         if i + j + k == 0:
           return (i,j,k)
 
+def unique_char(s):
+  ''' Find first non-repeated char in a string '''
+  myDict = {}
+  first = len(s)
+  for c in s:
+    if c in myDict.keys():
+      myDict[c] += 1
+    else:
+      myDict[c] = 1
+  if 1 in myDict.values():
+    for k,v in myDict.items():
+      if v == 1:
+        if s.index(k) < first:
+          first = s.index(k)
+    return s[first]
+  return(False)
