@@ -20,14 +20,14 @@ class Board(list):
         for square in self.board:
             print square
 
-    def bget(self,cor):
+    def get(self,cor):
         return self.board[cor[0]][cor[1]]
 
-    def bset(self,cor,v):
+    def set(self,cor,v):
         self.board[cor[0]][cor[1]] = zfill(str(v), 2)
 
 def visited(board,cor):
-    return(board.bget(cor) != '00')
+    return(board.get(cor) != '00')
 
 
 def knight_moves(board,cor):
@@ -58,17 +58,15 @@ def move(board,cor):
 def main():
     b = Board()
     start_pos = (c(range(8)),c(range(8)))
-    b.bset(start_pos,1)
+    b.set(start_pos,1)
     last_move = start_pos
     i = 2
-    while i < 65:
-        if i == 64:
-            b.bset(knight_moves(b,last_move)[0],i)
-            break
+    while i < 64:
         next_possible = move(b,last_move)
-        b.bset(next_possible, i)
+        b.set(next_possible, i)
         i = i + 1
         last_move = next_possible
+    b.set(knight_moves(b,last_move)[0],i)
     print "SUCCESS!"
     b.draw()
         
