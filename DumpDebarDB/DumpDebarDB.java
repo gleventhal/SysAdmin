@@ -25,7 +25,7 @@ public class DumpDebarDB {
         String addr = "https://www.state.nj.us/cgi-bin/treas/revenue/debarsearch.pl";
         String desktop = System.getProperty("user.home") + "/Desktop";
         File clientlist = new File(desktop + "/clients.txt");
-        if (! clientlist.exists()) {
+        if (!clientlist.exists()) {
             System.out.printf("Cannot find %s, exiting\n", clientlist);
             System.exit(1);
         }
