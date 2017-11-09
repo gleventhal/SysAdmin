@@ -3,6 +3,7 @@
 Place a file on your Desktop called clients.txt formatted like so:
 
 Smith, John
+
 Davis, Samuel R.
 
 It will match on substrings, so less is more, you can always filter the returned results.  
