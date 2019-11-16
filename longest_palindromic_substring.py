@@ -3,7 +3,8 @@
 # then finding the first palindrome between the two widest points
 # decreasing width on each miss
 from collections import defaultdict
-def lps(s):
+
+def longest_palindromic_substring(s):
     pals = []
     pairs = defaultdict(list)
     for i in range(len(s)):
@@ -15,8 +16,10 @@ def lps(s):
             hi = len(p) - 1
             while lo < len(p):
                 while hi > lo:
-                    if s[p[lo]:p[hi]+1] == s[p[lo]:p[hi]+1][::-1] and len(s[p[lo]:p[hi]+1][::-1]) > 1:
-                        pals.append(s[p[lo]:p[hi]+1])
+                    l = p[lo]
+                    h = p[hi]+1
+                    if s[l:h] == s[l:h][::-1] and len(s[l:h]) > 1:
+                        pals.append(s[l:h])
                     hi -= 1
                 hi = len(p) - 1
                 lo += 1
